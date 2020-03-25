@@ -26,7 +26,7 @@ void Repository::delElem(Project p) {
 	size--;
 }
 
-void Repository::updateElem(Project p, char* gitPath, int noOfBranches, int totalNoOfCommits) {
+void Repository::updateElem(Project p,char* gitPath, int noOfBranches, int totalNoOfCommits) {
 	int i = findElem(p);
 	elem[i].setGitPath(gitPath);
 	elem[i].setNoOfBranches(noOfBranches);
