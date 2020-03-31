@@ -1,10 +1,14 @@
 #include <iostream>
-#include "project.h"
-#include "ui.h"
+#include "Project.h"
+#include "Ui.h"
 
 using namespace std;
 
 Ui::Ui() {
+}
+
+Ui::Ui(const Service &s) {
+	service = s;
 }
 
 void Ui::showMenu() {
@@ -14,7 +18,8 @@ void Ui::showMenu() {
 	cout << "3. Sterge proiect" << endl;
 	cout << "4. Afiseaza proiecte" << endl;
 	cout << "5. Afiseaza proiecte care au cel putin K branch-uri si L commit-uri" << endl;
-	cout << "6.Sterge proiecte care au noOfBranches*totalNoOfCommits = 0" << endl;
+	cout << "6. Sterge proiecte care au noOfBranches*totalNoOfCommits = 0" << endl;
+	cout << "7. Undo" << endl;
 	cout << "0. Exit" << endl;
 }
 
@@ -56,7 +61,7 @@ void Ui::deleteProject() {
 		delete[] gitPath;
 		gitPath = NULL;
 	}
-	cout << "Proiect sters"<<endl;
+	cout << "Proiect sters" << endl;
 }
 
 void Ui::updateProject() {
@@ -87,7 +92,7 @@ void Ui::updateProject() {
 
 void Ui::projectsWithAtribute()
 {
-	int minimumOfBranches, minimumOfCommits, n=0;
+	int minimumOfBranches, minimumOfCommits, n = 0;
 	Project resultList[20];
 	cout << "minimumOfBranches: ";	cin >> minimumOfBranches;
 	cout << "minimumOfCommits: ";	cin >> minimumOfCommits;
@@ -123,6 +128,7 @@ void Ui::run() {
 		case 4: {printProjects(); break;}
 		case 5: {projectsWithAtribute(); break;}
 		case 6: {deleteProjectsWithAtribute(); break;}
+		case 7: {service.undo(); break;}
 		}
 	}
 }

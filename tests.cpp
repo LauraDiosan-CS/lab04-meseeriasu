@@ -41,8 +41,8 @@ void testRepository() {
 
 void testService() {
 	Service service;
-	Project lab1("D/oop/lab1", 3, 5), lab2("D/oop/lab2", 7, 10), lab3("D/oop/lab3", 6, 12);
-	char* lab1Path, *lab2Path, *lab3Path;
+	Project lab1("D/oop/lab1", 3, 5), lab2("D/oop/lab2", 7, 10), lab3("D/oop/lab3", 6, 12), lab5("D/oop/lab5", 0, 3);
+	char* lab1Path, * lab2Path, * lab3Path, *lab5Path;
 	lab1Path = new char[15];
 	strcpy_s(lab1Path, 11, "D/oop/lab1");
 	lab2Path = new char[15];
@@ -66,5 +66,13 @@ void testService() {
 	service.findProjectsWithAtribute(5, 4, testList, resultN);
 	assert(resultN == 1);
 	assert(testList[0] == lab2);
+	lab5Path = new char[15];
+	strcpy_s(lab5Path, 11, "D/oop/lab5");
+	service.addProject(lab5Path, 0, 3);
+	service.undo();
+	assert(service.getAll()[0] == lab4 and service.getAll()[1] == lab2);
+	service.addProject(lab5Path, 0, 3);
+	service.deleteProjectWithATribute();
+	assert(service.getAll()[0] == lab4 and service.getAll()[1] == lab2);
 	cout << "Service tests done!" << endl;
 }
